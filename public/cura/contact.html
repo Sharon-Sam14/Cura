@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — Cura</title>
+<meta name="description" content="Get in touch with the Cura team — Sharon, Aaron and Sam."/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html"><div class="logo-mark">🩺</div>Cura</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#roles-section">Roles</a></li>
+    <li><a href="index.html#features-section">Features</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn btn-ghost" onclick="openLogin()">Sign In</button>
+    <button class="btn btn-primary" onclick="openLogin()">Get Started →</button>
+  </div>
+</nav>
+
+<section class="hero" style="min-height:auto;padding:90px 40px 50px">
+  <div class="hero-grid"></div>
+  <div class="hero-orbs"><div class="orb orb1"></div><div class="orb orb2"></div></div>
+  <div class="hero-badge"><div class="badge-dot"></div>Get in Touch</div>
+  <h1 style="font-size:clamp(34px,5vw,60px)">Let's <span class="grad">Talk</span></h1>
+  <p>Whether you're a clinician, a hospital admin, or just curious — we'd love to hear from you.</p>
+</section>
+
+<section class="section alt">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <form class="contact-form" onsubmit="return submitContact(event)">
+        <div class="cf-row">
+          <div class="cf-field"><label>Your Name</label><input id="cfName" placeholder="Jane Doe" required/></div>
+          <div class="cf-field"><label>Email</label><input id="cfEmail" type="email" placeholder="you@email.com" required/></div>
+        </div>
+        <div class="cf-row">
+          <div class="cf-field"><label>Organisation</label><input placeholder="Hospital / Clinic"/></div>
+          <div class="cf-field"><label>I am a…</label>
+            <select>
+              <option>Doctor</option>
+              <option>Nurse</option>
+              <option>Hospital Administrator</option>
+              <option>Patient</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="cf-row cols-1">
+          <div class="cf-field"><label>Message</label><textarea id="cfMsg" placeholder="Tell us how we can help…" required></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Send Message →</button>
+      </form>
+      <div class="contact-info">
+        <div class="info-item">
+          <div class="info-icon">✉️</div>
+          <div><div class="info-label">Email</div><div class="info-value">hello@cura.health</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div><div class="info-label">Phone</div><div class="info-value">+91 98765 43210</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div><div class="info-label">Address</div><div class="info-value">Ground Floor, MedTech Park,<br/>Kochi, Kerala — India</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">⏱</div>
+          <div><div class="info-label">Response Time</div><div class="info-value">Within 24 hours, weekdays</div></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">👥</div>
+          <div><div class="info-label">Reach Us Direct</div><div class="info-value">Sharon · Aaron · Sam</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html"><div class="logo-mark">🩺</div>Cura</a>
+      <p>A cloud medical consultation platform built to bridge bedside care and remote expertise.</p>
+    </div>
+    <div class="footer-col"><h4>Product</h4><ul>
+      <li><a href="index.html#features-section">Features</a></li>
+      <li><a href="index.html#roles-section">Roles</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Company</h4><ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Newsletter</h4>
+      <form onsubmit="return submitNewsletter(event)">
+        <input type="email" placeholder="you@email.com" required style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;margin-bottom:8px"/>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Cura · Cloud Medical Consultation Platform</div>
+    <div class="footer-credits">Crafted with ♥ by <b>Sharon</b>, <b>Aaron</b> &amp; <b>Sam</b></div>
+  </div>
+</footer>
+
+<div class="login-modal-overlay" id="loginModal">
+  <div class="login-modal">
+    <button class="modal-close" onclick="closeLogin()">✕</button>
+    <div class="modal-logo"><div class="modal-logo-mark">🩺</div><div class="modal-logo-text">Cura</div></div>
+    <div class="modal-title">Sign in to continue</div>
+    <div class="modal-sub">Select your role then enter your credentials</div>
+    <div class="role-select-grid">
+      <button class="role-select-btn" id="rs-admin" onclick="pickRole('admin')"><span class="rs-icon">🛡️</span>Administrator</button>
+      <button class="role-select-btn" id="rs-doctor" onclick="pickRole('doctor')"><span class="rs-icon">🩻</span>Doctor</button>
+      <button class="role-select-btn" id="rs-nurse" onclick="pickRole('nurse')"><span class="rs-icon">💉</span>Nurse</button>
+      <button class="role-select-btn" id="rs-patient" onclick="pickRole('patient')"><span class="rs-icon">🧑‍⚕️</span>Patient</button>
+    </div>
+    <div class="form-group"><label>Email Address</label><input type="email" id="loginEmail" placeholder="you@cura.health" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <div class="form-group"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <div class="login-error" id="loginErr">⚠ Please select a role and enter credentials.</div>
+    <button class="login-submit" onclick="doLogin()">Sign In →</button>
+    <div class="demo-hint">Demo: select any role · use any email &amp; password</div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
