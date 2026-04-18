@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cura — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/app.css"/>
+</head>
+<body class="app">
+
+<!-- ═══ SIDEBAR ═══ -->
+<div class="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-logo-mark">🩺</div>
+    <div class="sidebar-logo-text">Cura</div>
+  </div>
+  <div class="sidebar-role-block">
+    <div class="srb-icon" id="sRoleIcon">👤</div>
+    <div>
+      <div class="srb-role" id="sRoleName">Role</div>
+      <div class="srb-name" id="sUserName">User</div>
+    </div>
+  </div>
+  <div class="sidebar-nav" id="sidebarNav"></div>
+  <div class="sidebar-foot">
+    <button class="logout-btn" onclick="doLogout()">⬅ Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<div class="app-main">
+  <div class="app-topbar">
+    <div class="topbar-title" id="topbarTitle">Dashboard</div>
+    <div class="topbar-right">
+      <div class="notif-btn" title="Notifications">🔔<span class="notif-dot"></span></div>
+      <div class="topbar-avatar" id="topbarAv">U</div>
+    </div>
+  </div>
+
+  <div class="app-content">
+
+    <!-- ══ ADMIN: DASHBOARD ══ -->
+    <div class="panel" id="panel-admin-dashboard">
+      <div class="stats-row">
+        <div class="stat-card" style="--stripe:var(--accent6)"><div class="sc-label">Total Doctors <span class="sc-icon">👨‍⚕️</span></div><div class="sc-value">24</div><div class="sc-change up">↑ 3 added this month</div></div>
+        <div class="stat-card" style="--stripe:var(--accent3)"><div class="sc-label">Active Nurses <span class="sc-icon">💉</span></div><div class="sc-value">58</div><div class="sc-change up">↑ 8 this month</div></div>
+        <div class="stat-card" style="--stripe:var(--accent2)"><div class="sc-label">Total Patients <span class="sc-icon">🧑</span></div><div class="sc-value">1,240</div><div class="sc-change up">↑ 45 this week</div></div>
+        <div class="stat-card" style="--stripe:var(--accent4)"><div class="sc-label">Consultations Today <span class="sc-icon">📋</span></div><div class="sc-value">87</div><div class="sc-change warn">↕ Normal load</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Recent Activity</span></div>
+        <div class="card-body">
+          <div class="alert-card crit"><div class="alert-card-title crit">⚠ High BP Alert — Rajan Kumar</div><div class="alert-card-body crit">Doctor notified · 10 min ago</div></div>
+          <div class="alert-card warn"><div class="alert-card-title warn">⚡ Low SpO₂ — Meera Pillai</div><div class="alert-card-body warn">Nurse intervention logged · 35 min ago</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ADMIN: USERS ══ -->
+    <div class="panel" id="panel-admin-users">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">System Users</span>
+          <button class="app-btn app-btn-primary app-btn-sm" onclick="openAddUserModal()">＋ Add User</button>
+        </div>
+        <div style="padding:0">
+          <table>
+            <thead><tr><th>Name</th><th>Role</th><th>Department</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="adminUserTable">
+              <tr><td><b>Dr. Alisha Rao</b></td><td><span class="badge badge-blue">Doctor</span></td><td>Cardiology</td><td><span class="badge badge-green">Active</span></td><td><button class="app-btn app-btn-ghost app-btn-sm">Edit</button></td></tr>
+              <tr><td><b>Nurse Maria Joji</b></td><td><span class="badge badge-purple">Nurse</span></td><td>ICU</td><td><span class="badge badge-green">Active</span></td><td><button class="app-btn app-btn-ghost app-btn-sm">Edit</button></td></tr>
+              <tr><td><b>Rajan Kumar</b></td><td><span class="badge badge-amber">Patient</span></td><td>—</td><td><span class="badge badge-green">Active</span></td><td><button class="app-btn app-btn-ghost app-btn-sm">Edit</button></td></tr>
+              <tr><td><b>Dr. Philip Mathew</b></td><td><span class="badge badge-blue">Doctor</span></td><td>Neurology</td><td><span class="badge badge-red">On Leave</span></td><td><button class="app-btn app-btn-ghost app-btn-sm">Edit</button></td></tr>
+              <tr><td><b>Nurse Priya Nair</b></td><td><span class="badge badge-purple">Nurse</span></td><td>Pediatrics</td><td><span class="badge badge-green">Active</span></td><td><button class="app-btn app-btn-ghost app-btn-sm">Edit</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ADMIN: REPORTS ══ -->
+    <div class="panel" id="panel-admin-reports">
+      <div class="stats-row" style="grid-template-columns:1fr 1fr 1fr">
+        <div class="stat-card" style="--stripe:var(--accent)"><div class="sc-label">Avg Consults/Day</div><div class="sc-value">87</div></div>
+        <div class="stat-card" style="--stripe:var(--accent3)"><div class="sc-label">Prescriptions Issued</div><div class="sc-value">342</div></div>
+        <div class="stat-card" style="--stripe:var(--accent2)"><div class="sc-label">System Uptime</div><div class="sc-value">99.8%</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Recent Activity Log</span></div>
+        <div style="padding:0">
+          <table>
+            <thead><tr><th>Time</th><th>User</th><th>Action</th><th>IP</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:'JetBrains Mono',monospace;font-size:12px">10:34 AM</td><td>Dr. Alisha Rao</td><td>Issued prescription #PRX-0091</td><td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3)">192.168.1.10</td></tr>
+              <tr><td style="font-family:'JetBrains Mono',monospace;font-size:12px">10:21 AM</td><td>Nurse Maria Joji</td><td>Updated vitals – Patient Rajan</td><td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3)">192.168.1.22</td></tr>
+              <tr><td style="font-family:'JetBrains Mono',monospace;font-size:12px">09:55 AM</td><td>Admin</td><td>Added user Dr. Philip Mathew</td><td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3)">192.168.1.1</td></tr>
+              <tr><td style="font-family:'JetBrains Mono',monospace;font-size:12px">09:10 AM</td><td>Nurse Priya Nair</td><td>Started consultation session</td><td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3)">192.168.1.31</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ADMIN: SETTINGS (NEW) ══ -->
+    <div class="panel" id="panel-admin-settings">
+      <div class="settings-tabs">
+        <button class="settings-tab active" onclick="switchSettingsTab('general', this)">General</button>
+        <button class="settings-tab" onclick="switchSettingsTab('security', this)">Security</button>
+        <button class="settings-tab" onclick="switchSettingsTab('notifications', this)">Notifications</button>
+      </div>
+      <div class="settings-section active" id="settings-general">
+        <div class="card"><div class="card-body">
+          <div class="form-row">
+            <div class="field"><label>Facility Name</label><input value="Cura General Hospital"/></div>
+            <div class="field"><label>Timezone</label><select><option>Asia/Kolkata (IST)</option><option>UTC</option><option>Asia/Dubai</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Default Language</label><select><option>English</option><option>हिंदी</option><option>മലയാളം</option></select></div>
+            <div class="field"><label>Date Format</label><select><option>DD/MM/YYYY</option><option>MM/DD/YYYY</option><option>YYYY-MM-DD</option></select></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end"><button class="app-btn app-btn-primary" onclick="showToast('Settings saved','✅')">✓ Save Changes</button></div>
+        </div></div>
+      </div>
+      <div class="settings-section" id="settings-security">
+        <div class="card"><div class="card-body">
+          <div class="form-row cols-1">
+            <div class="field"><label>Password Policy</label><select><option>Strong (12+ chars, mixed case, symbols)</option><option>Medium (8+ chars)</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Session Timeout</label><select><option>15 minutes</option><option>30 minutes</option><option>1 hour</option></select></div>
+            <div class="field"><label>2FA Enforcement</label><select><option>Required for Admin/Doctor</option><option>Optional</option><option>Disabled</option></select></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end"><button class="app-btn app-btn-primary" onclick="showToast('Security settings updated','🔐')">✓ Update</button></div>
+        </div></div>
+      </div>
+      <div class="settings-section" id="settings-notifications">
+        <div class="card"><div class="card-body">
+          <div class="form-row cols-1">
+            <div class="field"><label>Critical Alert Recipients</label><input value="oncall@cura.health, admin@cura.health"/></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Daily Digest</label><select><option>Enabled (8:00 AM)</option><option>Disabled</option></select></div>
+            <div class="field"><label>SMS Alerts</label><select><option>Critical only</option><option>All alerts</option><option>Off</option></select></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end"><button class="app-btn app-btn-primary" onclick="showToast('Notification preferences saved','🔔')">✓ Save</button></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ══ DOCTOR: DASHBOARD ══ -->
+    <div class="panel" id="panel-doctor-dashboard">
+      <div class="stats-row">
+        <div class="stat-card" style="--stripe:var(--accent)"><div class="sc-label">Today's Appointments <span class="sc-icon">📅</span></div><div class="sc-value">12</div><div class="sc-change up">↑ 4 pending</div></div>
+        <div class="stat-card" style="--stripe:var(--accent3)"><div class="sc-label">My Patients <span class="sc-icon">🏥</span></div><div class="sc-value">38</div><div class="sc-change up">↑ 2 new</div></div>
+        <div class="stat-card" style="--stripe:var(--accent2)"><div class="sc-label">Prescriptions <span class="sc-icon">💊</span></div><div class="sc-value">204</div><div class="sc-change up">↑ 7 today</div></div>
+        <div class="stat-card" style="--stripe:var(--accent4)"><div class="sc-label">Messages <span class="sc-icon">💬</span></div><div class="sc-value">5</div><div class="sc-change warn">Unread</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:18px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">Today's Appointments</span></div>
+          <div style="padding:0">
+            <table>
+              <thead><tr><th>Patient</th><th>Time</th><th>Type</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><b>Rajan Kumar</b></td><td>09:00</td><td>Follow-up</td><td><span class="badge badge-green">Done</span></td></tr>
+                <tr><td><b>Meera Pillai</b></td><td>10:30</td><td>New Visit</td><td><span class="badge badge-cyan">In Progress</span></td></tr>
+                <tr><td><b>Saji Thomas</b></td><td>11:45</td><td>Consultation</td><td><span class="badge badge-amber">Waiting</span></td></tr>
+                <tr><td><b>Anita George</b></td><td>14:00</td><td>Follow-up</td><td><span class="badge badge-amber">Waiting</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">Critical Alerts</span></div>
+          <div class="card-body">
+            <div class="alert-card crit"><div class="alert-card-title crit">⚠ High BP – Rajan Kumar</div><div class="alert-card-body crit">BP: 155/95 mmHg · Reported 10 min ago</div></div>
+            <div class="alert-card warn"><div class="alert-card-title warn">⚡ Low SpO₂ – Meera Pillai</div><div class="alert-card-body warn">SpO₂: 93% · Reported 35 min ago</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ DOCTOR: PATIENTS ══ -->
+    <div class="panel" id="panel-doctor-patients">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Patient Records</span>
+          <input style="background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:7px 12px;color:var(--text);font-size:13px;outline:none;width:210px" placeholder="🔍 Search patients…" oninput="this.style.borderColor=this.value?'var(--accent)':'var(--border)'"/>
+        </div>
+        <div style="padding:0">
+          <table>
+            <thead><tr><th>Name</th><th>Age</th><th>Condition</th><th>Last Visit</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><b>Rajan Kumar</b></td><td>54</td><td>Hypertension</td><td>Today</td><td><span class="badge badge-red">Critical</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('doctor','vitals')">View</button></td></tr>
+              <tr><td><b>Meera Pillai</b></td><td>38</td><td>Asthma</td><td>Today</td><td><span class="badge badge-amber">Monitor</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('doctor','vitals')">View</button></td></tr>
+              <tr><td><b>Saji Thomas</b></td><td>67</td><td>Diabetes Type 2</td><td>2 days ago</td><td><span class="badge badge-green">Stable</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('doctor','vitals')">View</button></td></tr>
+              <tr><td><b>Anita George</b></td><td>45</td><td>Migraine</td><td>1 week ago</td><td><span class="badge badge-green">Stable</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('doctor','vitals')">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ DOCTOR: APPOINTMENTS (NEW) ══ -->
+    <div class="panel" id="panel-doctor-appointments">
+      <div class="card">
+        <div class="card-header"><span class="card-title">Upcoming Appointments</span><button class="app-btn app-btn-primary app-btn-sm">＋ New Slot</button></div>
+        <div class="card-body">
+          <div class="appt-grid">
+            <div class="appt-card"><div class="appt-time">09:00 — 09:20</div><div class="appt-patient">Rajan Kumar</div><div class="appt-meta">Follow-up · Hypertension</div></div>
+            <div class="appt-card"><div class="appt-time">10:30 — 11:00</div><div class="appt-patient">Meera Pillai</div><div class="appt-meta">New Visit · Asthma</div></div>
+            <div class="appt-card"><div class="appt-time">11:45 — 12:15</div><div class="appt-patient">Saji Thomas</div><div class="appt-meta">Consultation · Diabetes</div></div>
+            <div class="appt-card"><div class="appt-time">14:00 — 14:20</div><div class="appt-patient">Anita George</div><div class="appt-meta">Follow-up · Migraine</div></div>
+            <div class="appt-card"><div class="appt-time">15:30 — 16:00</div><div class="appt-patient">Vinod Menon</div><div class="appt-meta">First Consult · General</div></div>
+            <div class="appt-card"><div class="appt-time">16:30 — 17:00</div><div class="appt-patient">Lakshmi Iyer</div><div class="appt-meta">Follow-up · Cardiology</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ DOCTOR: VITALS VIEW ══ -->
+    <div class="panel" id="panel-doctor-vitals">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px">
+        <button class="app-btn app-btn-ghost app-btn-sm" onclick="showPanel('doctor','patients')">← Back</button>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:700">Rajan Kumar</div>
+          <div style="font-size:12px;color:var(--text2)">54 · Male · Patient ID: #P-0041 · Hypertension</div>
+        </div>
+        <span class="badge badge-red" style="margin-left:auto">Critical</span>
+      </div>
+      <div class="vitals-chips">
+        <div class="v-chip"><div class="v-chip-label">Blood Pressure</div><div class="v-chip-val crit">155/95</div><div style="font-size:10px;color:var(--text3)">mmHg</div><div class="v-chip-status crit">⬆ High</div></div>
+        <div class="v-chip"><div class="v-chip-label">Heart Rate</div><div class="v-chip-val warn">92</div><div style="font-size:10px;color:var(--text3)">bpm</div><div class="v-chip-status warn">Elevated</div></div>
+        <div class="v-chip"><div class="v-chip-label">Temperature</div><div class="v-chip-val ok">37.2</div><div style="font-size:10px;color:var(--text3)">°C</div><div class="v-chip-status ok">Normal</div></div>
+        <div class="v-chip"><div class="v-chip-label">SpO₂</div><div class="v-chip-val ok">97</div><div style="font-size:10px;color:var(--text3)">%</div><div class="v-chip-status ok">Normal</div></div>
+        <div class="v-chip"><div class="v-chip-label">Resp. Rate</div><div class="v-chip-val ok">18</div><div style="font-size:10px;color:var(--text3)">/min</div><div class="v-chip-status ok">Normal</div></div>
+        <div class="v-chip"><div class="v-chip-label">Blood Glucose</div><div class="v-chip-val ok">110</div><div style="font-size:10px;color:var(--text3)">mg/dL</div><div class="v-chip-status ok">Normal</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Nurse Notes</span></div>
+        <div class="card-body" style="font-size:13.5px;color:var(--text2);line-height:1.65">Patient reports mild headache and dizziness since morning. BP elevated — monitoring closely. No other complaints. Medication administered at 09:30.</div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="app-btn app-btn-primary" onclick="showPanel('doctor','prescribe')">💊 Write Prescription</button>
+        <button class="app-btn app-btn-ghost" onclick="showPanel('doctor','consult')">💬 Start Consultation</button>
+      </div>
+    </div>
+
+    <!-- ══ DOCTOR: PRESCRIBE ══ -->
+    <div class="panel" id="panel-doctor-prescribe">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+        <button class="app-btn app-btn-ghost app-btn-sm" onclick="showPanel('doctor','vitals')">← Back</button>
+        <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:700">Write Prescription</div>
+      </div>
+      <div class="card"><div class="card-body">
+        <div class="form-row">
+          <div class="field"><label>Patient Name</label><input value="Rajan Kumar" readonly style="opacity:.7;cursor:not-allowed"/></div>
+          <div class="field"><label>Date</label><input type="date" id="rxDate"/></div>
+        </div>
+        <div class="form-row cols-1">
+          <div class="field"><label>Diagnosis / Clinical Notes</label><textarea placeholder="Enter diagnosis and clinical observations…"></textarea></div>
+        </div>
+        <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:14px;margin-bottom:12px;color:var(--text)">Medications</div>
+        <div id="medList">
+          <div class="form-row cols-3 med-entry">
+            <div class="field"><label>Medicine Name</label><input placeholder="e.g. Amlodipine 5mg"/></div>
+            <div class="field"><label>Dosage</label><input placeholder="e.g. 1 tablet"/></div>
+            <div class="field"><label>Frequency</label><select><option>Once daily</option><option>Twice daily</option><option>Thrice daily</option><option>As needed</option><option>At bedtime</option></select></div>
+          </div>
+        </div>
+        <button class="app-btn app-btn-ghost app-btn-sm" onclick="addMed()" style="margin-bottom:18px">＋ Add Medicine</button>
+        <div class="form-row">
+          <div class="field"><label>Duration</label><input placeholder="e.g. 30 days"/></div>
+          <div class="field"><label>Special Instructions</label><input placeholder="e.g. Take after meals"/></div>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end">
+          <button class="app-btn app-btn-ghost">Save Draft</button>
+          <button class="app-btn app-btn-primary" onclick="savePrescription()">✓ Issue Prescription</button>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ══ DOCTOR: CONSULT ══ -->
+    <div class="panel" id="panel-doctor-consult">
+      <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:20px">Consultations</div>
+      <div class="card"><div class="card-body" style="padding:16px">
+        <div class="chat-layout">
+          <div class="chat-contacts">
+            <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px">Patients</div>
+            <div class="chat-contact active"><div class="cc-name">Rajan Kumar</div><div class="cc-last">Thank you doctor</div></div>
+            <div class="chat-contact"><div class="cc-name">Meera Pillai</div><div class="cc-last">When is my next visit?</div></div>
+            <div class="chat-contact"><div class="cc-name">Saji Thomas</div><div class="cc-last">Feeling better now</div></div>
+          </div>
+          <div class="chat-panel">
+            <div class="chat-head"><div class="online-dot"></div>Rajan Kumar — <span style="color:var(--text2);font-weight:400">Hypertension</span></div>
+            <div class="messages-area" id="doctorChatArea">
+              <div class="msg msg-in">Doctor, my head has been hurting and I feel dizzy since morning.<div class="msg-time">9:45 AM</div></div>
+              <div class="msg msg-out">It could be a BP spike. Please take your reading and let the nurse update it.<div class="msg-time">9:47 AM</div></div>
+              <div class="msg msg-in">Nurse just updated it – 155/95. Should I take an extra pill?<div class="msg-time">10:02 AM</div></div>
+              <div class="msg msg-out">No, don't take extra medication on your own. Rest and stay calm. I'll adjust your prescription shortly.<div class="msg-time">10:04 AM</div></div>
+            </div>
+            <div class="chat-input-row">
+              <input class="chat-text-input" id="doctorChatInput" placeholder="Type a message to patient…" onkeydown="if(event.key==='Enter')sendChat('doctor')"/>
+              <button class="app-btn app-btn-primary" onclick="sendChat('doctor')">Send →</button>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ══ NURSE: DASHBOARD ══ -->
+    <div class="panel" id="panel-nurse-dashboard">
+      <div class="stats-row">
+        <div class="stat-card" style="--stripe:var(--accent3)"><div class="sc-label">Assigned Patients <span class="sc-icon">🏥</span></div><div class="sc-value">14</div></div>
+        <div class="stat-card" style="--stripe:var(--accent4)"><div class="sc-label">Pending Vitals <span class="sc-icon">⚠</span></div><div class="sc-value">3</div><div class="sc-change warn">Needs attention</div></div>
+        <div class="stat-card" style="--stripe:var(--accent2)"><div class="sc-label">Updated Today <span class="sc-icon">✅</span></div><div class="sc-value">11</div></div>
+        <div class="stat-card" style="--stripe:var(--accent)"><div class="sc-label">Tasks Due <span class="sc-icon">📝</span></div><div class="sc-value">5</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Patients Needing Vital Update</span></div>
+        <div style="padding:0">
+          <table>
+            <thead><tr><th>Patient</th><th>Room</th><th>Last Updated</th><th>Priority</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><b>Rajan Kumar</b></td><td>304-A</td><td>2h ago</td><td><span class="badge badge-red">High</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('nurse','vitals')">Update Vitals</button></td></tr>
+              <tr><td><b>Meera Pillai</b></td><td>210-B</td><td>4h ago</td><td><span class="badge badge-amber">Medium</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('nurse','vitals')">Update Vitals</button></td></tr>
+              <tr><td><b>Saji Thomas</b></td><td>115-C</td><td>6h ago</td><td><span class="badge badge-green">Low</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('nurse','vitals')">Update Vitals</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ NURSE: VITALS FORM ══ -->
+    <div class="panel" id="panel-nurse-vitals">
+      <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:22px">Enter Patient Vitals</div>
+      <div class="card"><div class="card-body">
+        <div class="form-row">
+          <div class="field"><label>Select Patient</label>
+            <select><option>Rajan Kumar (Room 304-A)</option><option>Meera Pillai (Room 210-B)</option><option>Saji Thomas (Room 115-C)</option><option>Anita George (Room 402-D)</option></select>
+          </div>
+          <div class="field"><label>Date &amp; Time of Reading</label><input type="datetime-local" id="vitalsDateTime"/></div>
+        </div>
+        <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:14px;margin-bottom:14px;color:var(--text);display:flex;align-items:center;gap:8px"><span style="font-size:16px">📊</span> Vital Signs</div>
+        <div class="form-row cols-3">
+          <div class="field"><label>Systolic BP (mmHg)</label><div class="vital-input-wrap"><input type="number" class="vital-field-input" id="bpSys" placeholder="e.g. 120" oninput="classifyVital(this,90,140)"/><span class="vital-unit-tag">mmHg</span></div></div>
+          <div class="field"><label>Diastolic BP (mmHg)</label><div class="vital-input-wrap"><input type="number" class="vital-field-input" id="bpDia" placeholder="e.g. 80" oninput="classifyVital(this,60,90)"/><span class="vital-unit-tag">mmHg</span></div></div>
+          <div class="field"><label>Heart Rate (bpm)</label><div class="vital-input-wrap"><input type="number" class="vital-field-input" id="heartRate" placeholder="e.g. 72" oninput="classifyVital(this,60,100)"/><span class="vital-unit-tag">bpm</span></div></div>
+        </div>
+        <div class="form-row cols-3">
+          <div class="field"><label>Temperature (°C)</label><div class="vital-input-wrap"><input type="number" step="0.1" class="vital-field-input" id="temp" placeholder="e.g. 37.0" oninput="classifyVital(this,36,37.5)"/><span class="vital-unit-tag">°C</span></div></div>
+          <div class="field"><label>SpO₂ (%)</label><div class="vital-input-wrap"><input type="number" class="vital-field-input" id="spo2" placeholder="e.g. 98" oninput="classifyVital(this,95,100)"/><span class="vital-unit-tag">%</span></div></div>
+          <div class="field"><label>Respiratory Rate</label><div class="vital-input-wrap"><input type="number" class="vital-field-input" id="rr" placeholder="e.g. 16" oninput="classifyVital(this,12,20)"/><span class="vital-unit-tag">/min</span></div></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Blood Glucose (mg/dL)</label><div class="vital-input-wrap"><input type="number" class="vital-field-input" id="glucose" placeholder="e.g. 100" oninput="classifyVital(this,70,140)"/><span class="vital-unit-tag">mg/dL</span></div></div>
+          <div class="field"><label>Weight (kg)</label><div class="vital-input-wrap"><input type="number" step="0.1" class="vital-field-input" id="weight" placeholder="e.g. 72.5"/><span class="vital-unit-tag">kg</span></div></div>
+        </div>
+        <div class="form-row cols-1">
+          <div class="field"><label>Clinical Observations / Notes</label><textarea id="nurseNotes" placeholder="Enter any additional observations or patient-reported symptoms…"></textarea></div>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end">
+          <button class="app-btn app-btn-ghost" onclick="clearVitals()">Clear</button>
+          <button class="app-btn app-btn-primary" onclick="saveVitals()">✓ Submit to Cloud</button>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ══ NURSE: PATIENTS ══ -->
+    <div class="panel" id="panel-nurse-patients">
+      <div class="card">
+        <div class="card-header"><span class="card-title">My Assigned Patients</span></div>
+        <div style="padding:0">
+          <table>
+            <thead><tr><th>Patient</th><th>Room</th><th>Condition</th><th>Assigned Doctor</th><th>Vitals</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><b>Rajan Kumar</b></td><td>304-A</td><td>Hypertension</td><td>Dr. Alisha Rao</td><td><span class="badge badge-red">Critical</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('nurse','vitals')">Update</button></td></tr>
+              <tr><td><b>Meera Pillai</b></td><td>210-B</td><td>Asthma</td><td>Dr. Alisha Rao</td><td><span class="badge badge-amber">Monitor</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('nurse','vitals')">Update</button></td></tr>
+              <tr><td><b>Saji Thomas</b></td><td>115-C</td><td>Diabetes Type 2</td><td>Dr. Philip Mathew</td><td><span class="badge badge-green">Stable</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('nurse','vitals')">Update</button></td></tr>
+              <tr><td><b>Anita George</b></td><td>402-D</td><td>Migraine</td><td>Dr. Alisha Rao</td><td><span class="badge badge-green">Stable</span></td><td><button class="app-btn app-btn-primary app-btn-sm" onclick="showPanel('nurse','vitals')">Update</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ NURSE: TASKS (NEW) ══ -->
+    <div class="panel" id="panel-nurse-tasks">
+      <div class="card">
+        <div class="card-header"><span class="card-title">My Tasks Today</span></div>
+        <div class="card-body">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="alert-card warn" onclick="toggleTask(this)" style="cursor:pointer;display:flex;align-items:center;gap:12px">
+              <input type="checkbox" style="accent-color:var(--accent3);width:18px;height:18px"/>
+              <div style="flex:1"><div class="task-label" style="font-weight:600;font-size:13.5px;color:var(--text)">Update vitals — Rajan Kumar (Room 304-A)</div><div style="font-size:11.5px;color:var(--text3);margin-top:3px">Due in 30 minutes · Priority: High</div></div>
+            </div>
+            <div class="alert-card" style="background:var(--surface2);border-color:var(--border);cursor:pointer;display:flex;align-items:center;gap:12px" onclick="toggleTask(this)">
+              <input type="checkbox" style="accent-color:var(--accent3);width:18px;height:18px"/>
+              <div style="flex:1"><div class="task-label" style="font-weight:600;font-size:13.5px;color:var(--text)">Administer medication — Meera Pillai</div><div style="font-size:11.5px;color:var(--text3);margin-top:3px">Due 11:00 AM</div></div>
+            </div>
+            <div class="alert-card" style="background:var(--surface2);border-color:var(--border);cursor:pointer;display:flex;align-items:center;gap:12px" onclick="toggleTask(this)">
+              <input type="checkbox" style="accent-color:var(--accent3);width:18px;height:18px"/>
+              <div style="flex:1"><div class="task-label" style="font-weight:600;font-size:13.5px;color:var(--text)">Pre-op check — Saji Thomas</div><div style="font-size:11.5px;color:var(--text3);margin-top:3px">Due 1:30 PM</div></div>
+            </div>
+            <div class="alert-card" style="background:var(--surface2);border-color:var(--border);cursor:pointer;display:flex;align-items:center;gap:12px" onclick="toggleTask(this)">
+              <input type="checkbox" style="accent-color:var(--accent3);width:18px;height:18px"/>
+              <div style="flex:1"><div class="task-label" style="font-weight:600;font-size:13.5px;color:var(--text)">Update care plan — Anita George</div><div style="font-size:11.5px;color:var(--text3);margin-top:3px">Due end of shift</div></div>
+            </div>
+            <div class="alert-card" style="background:var(--surface2);border-color:var(--border);cursor:pointer;display:flex;align-items:center;gap:12px" onclick="toggleTask(this)">
+              <input type="checkbox" style="accent-color:var(--accent3);width:18px;height:18px"/>
+              <div style="flex:1"><div class="task-label" style="font-weight:600;font-size:13.5px;color:var(--text)">Restock supplies — Cart 3</div><div style="font-size:11.5px;color:var(--text3);margin-top:3px">Routine</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PATIENT: DASHBOARD ══ -->
+    <div class="panel" id="panel-patient-dashboard">
+      <div class="stats-row" style="grid-template-columns:1fr 1fr 1fr">
+        <div class="stat-card" style="--stripe:var(--accent)"><div class="sc-label">My Doctor <span class="sc-icon">👨‍⚕️</span></div><div class="sc-value" style="font-size:17px;margin-top:4px">Dr. Alisha Rao</div><div class="sc-change up">Cardiology</div></div>
+        <div class="stat-card" style="--stripe:var(--accent3)"><div class="sc-label">Active Prescriptions <span class="sc-icon">💊</span></div><div class="sc-value">2</div></div>
+        <div class="stat-card" style="--stripe:var(--accent4)"><div class="sc-label">Next Appointment <span class="sc-icon">📅</span></div><div class="sc-value" style="font-size:17px;margin-top:4px">Mar 14</div><div class="sc-change up">10:30 AM</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">My Latest Vitals</span><span class="badge badge-green" style="font-size:10px">Live</span></div>
+          <div class="card-body">
+            <div class="vitals-chips" style="grid-template-columns:1fr 1fr">
+              <div class="v-chip"><div class="v-chip-label">Blood Pressure</div><div class="v-chip-val crit">155/95</div><div class="v-chip-status crit">⬆ High</div></div>
+              <div class="v-chip"><div class="v-chip-label">Heart Rate</div><div class="v-chip-val warn">92 bpm</div><div class="v-chip-status warn">Elevated</div></div>
+              <div class="v-chip"><div class="v-chip-label">Temperature</div><div class="v-chip-val ok">37.1°C</div><div class="v-chip-status ok">Normal</div></div>
+              <div class="v-chip"><div class="v-chip-label">SpO₂</div><div class="v-chip-val ok">97%</div><div class="v-chip-status ok">Normal</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">Active Prescription</span></div>
+          <div class="card-body">
+            <div class="rx-card" style="padding:16px">
+              <div class="rx-header">
+                <div><div style="font-weight:700;font-size:14px">Rx — Mar 11, 2026</div><div style="font-size:11.5px;color:var(--text2)">Dr. Alisha Rao · Cardiology</div></div>
+                <div class="rx-symbol">℞</div>
+              </div>
+              <div class="med-row"><span class="med-name">Amlodipine 5mg</span><span class="med-dose">1 tablet</span><span class="med-freq">Once daily</span></div>
+              <div class="med-row"><span class="med-name">Telmisartan 40mg</span><span class="med-dose">1 tablet</span><span class="med-freq">At bedtime</span></div>
+              <div style="margin-top:10px;font-size:11.5px;color:var(--text3)">30 days · After meals</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PATIENT: PRESCRIPTIONS ══ -->
+    <div class="panel" id="panel-patient-prescriptions">
+      <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:20px">My Prescriptions</div>
+      <div class="rx-card">
+        <div class="rx-header">
+          <div><div style="font-weight:700;font-size:15px">Prescription #PRX-0091</div><div style="font-size:12px;color:var(--text2)">Dr. Alisha Rao · Cardiology · Mar 11, 2026</div></div>
+          <div class="rx-symbol">℞</div>
+        </div>
+        <div style="margin-bottom:12px;padding:10px 12px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.15);border-radius:8px;font-size:13px;color:var(--text2)"><b style="color:var(--text)">Diagnosis:</b> Stage 2 Hypertension with mild tachycardia</div>
+        <div class="med-row"><span class="med-name">Amlodipine 5mg</span><span class="med-dose">1 tablet</span><span class="med-freq">Once daily (morning)</span></div>
+        <div class="med-row"><span class="med-name">Telmisartan 40mg</span><span class="med-dose">1 tablet</span><span class="med-freq">At bedtime</span></div>
+        <div style="margin-top:12px;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:12px;color:var(--text3)">30 days · Take after meals · Avoid excess salt</span>
+          <button class="app-btn app-btn-ghost app-btn-sm" onclick="showToast('Prescription downloaded as PDF','⬇')">⬇ Download PDF</button>
+        </div>
+      </div>
+      <div class="rx-card" style="opacity:.65">
+        <div class="rx-header">
+          <div><div style="font-weight:700;font-size:15px">Prescription #PRX-0078</div><div style="font-size:12px;color:var(--text2)">Dr. Alisha Rao · Feb 20, 2026</div></div>
+          <span class="badge badge-amber">Expired</span>
+        </div>
+        <div class="med-row"><span class="med-name">Metoprolol 25mg</span><span class="med-dose">1 tablet</span><span class="med-freq">Twice daily</span></div>
+        <div style="margin-top:10px;font-size:12px;color:var(--text3)">15 days · Completed</div>
+      </div>
+    </div>
+
+    <!-- ══ PATIENT: APPOINTMENTS (NEW) ══ -->
+    <div class="panel" id="panel-patient-appointments">
+      <div class="card">
+        <div class="card-header"><span class="card-title">My Appointments</span><button class="app-btn app-btn-primary app-btn-sm" onclick="showToast('Booking request sent to Dr. Alisha Rao','📅')">＋ Request Appointment</button></div>
+        <div class="card-body">
+          <div class="appt-grid">
+            <div class="appt-card"><div class="appt-time">Mar 14 · 10:30</div><div class="appt-patient">Dr. Alisha Rao</div><div class="appt-meta">Follow-up · Cardiology</div><div style="margin-top:10px"><span class="badge badge-cyan">Confirmed</span></div></div>
+            <div class="appt-card"><div class="appt-time">Mar 28 · 09:00</div><div class="appt-patient">Dr. Alisha Rao</div><div class="appt-meta">Routine BP review</div><div style="margin-top:10px"><span class="badge badge-amber">Pending</span></div></div>
+          </div>
+          <div style="margin-top:24px;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1px">Past Appointments</div>
+          <div class="appt-grid" style="margin-top:10px;opacity:.7">
+            <div class="appt-card"><div class="appt-time">Feb 20 · 11:00</div><div class="appt-patient">Dr. Alisha Rao</div><div class="appt-meta">Initial consult</div><div style="margin-top:10px"><span class="badge badge-green">Done</span></div></div>
+            <div class="appt-card"><div class="appt-time">Jan 15 · 14:30</div><div class="appt-patient">Dr. Philip Mathew</div><div class="appt-meta">Second opinion</div><div style="margin-top:10px"><span class="badge badge-green">Done</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PATIENT: CONSULT ══ -->
+    <div class="panel" id="panel-patient-consult">
+      <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:20px">My Consultations</div>
+      <div class="card"><div class="card-body" style="padding:16px">
+        <div class="chat-layout">
+          <div class="chat-contacts">
+            <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px">Doctors</div>
+            <div class="chat-contact active"><div class="cc-name">Dr. Alisha Rao</div><div class="cc-last">Rest and stay calm.</div></div>
+          </div>
+          <div class="chat-panel">
+            <div class="chat-head"><div class="online-dot"></div>Dr. Alisha Rao — <span style="color:var(--text2);font-weight:400">Cardiology</span></div>
+            <div class="messages-area" id="patientChatArea">
+              <div class="msg msg-out">Doctor, my head has been hurting and I feel dizzy since morning.<div class="msg-time">9:45 AM</div></div>
+              <div class="msg msg-in">It could be a BP spike. Please take your reading and let the nurse update it.<div class="msg-time">9:47 AM</div></div>
+              <div class="msg msg-out">Nurse just updated it – 155/95. Should I take an extra pill?<div class="msg-time">10:02 AM</div></div>
+              <div class="msg msg-in">No, don't add medication on your own. Rest and keep calm. I'll adjust the prescription.<div class="msg-time">10:04 AM</div></div>
+            </div>
+            <div class="chat-input-row">
+              <input class="chat-text-input" id="patientChatInput" placeholder="Message your doctor…" onkeydown="if(event.key==='Enter')sendChat('patient')"/>
+              <button class="app-btn app-btn-primary" onclick="sendChat('patient')">Send →</button>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ══ PATIENT: MY DETAILS ══ -->
+    <div class="panel" id="panel-patient-details">
+      <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:22px">My Health Details</div>
+      <div class="card"><div class="card-body">
+        <div class="form-row">
+          <div class="field"><label>Full Name</label><input value="Rajan Kumar" id="pName"/></div>
+          <div class="field"><label>Date of Birth</label><input type="date" value="1970-05-12"/></div>
+        </div>
+        <div class="form-row cols-3">
+          <div class="field"><label>Blood Group</label><select><option selected>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select></div>
+          <div class="field"><label>Weight (kg)</label><input type="number" value="78"/></div>
+          <div class="field"><label>Height (cm)</label><input type="number" value="170"/></div>
+        </div>
+        <div class="form-row cols-1"><div class="field"><label>Known Allergies</label><input value="Penicillin, Sulpha drugs"/></div></div>
+        <div class="form-row cols-1"><div class="field"><label>Chronic Conditions</label><input value="Hypertension (Stage 2)"/></div></div>
+        <div class="form-row cols-1"><div class="field"><label>Emergency Contact</label><input value="Priya Kumar (Wife) – 9876543210"/></div></div>
+        <div style="display:flex;justify-content:flex-end"><button class="app-btn app-btn-primary" onclick="showToast('Health details saved successfully','✅')">✓ Save Details</button></div>
+      </div></div>
+    </div>
+
+    <!-- ══ ABOUT (shared by all roles) ══ -->
+    <div class="panel" id="panel-admin-about"></div>
+    <div class="panel" id="panel-doctor-about"></div>
+    <div class="panel" id="panel-nurse-about"></div>
+    <div class="panel" id="panel-patient-about"></div>
+
+  </div><!-- /app-content -->
+</div><!-- /app-main -->
+
+<!-- ABOUT panel template (cloned via JS) — shared content -->
+<template id="aboutTpl">
+  <div class="card"><div class="card-body">
+    <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:8px">About Cura</div>
+    <p style="color:var(--text2);line-height:1.7;font-size:14px;margin-bottom:20px">A unified cloud platform connecting nurses, doctors, and patients — enabling real-time vitals monitoring, remote consultations, and instant digital prescriptions.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px">
+      <div class="v-chip"><div class="v-chip-label">Version</div><div style="font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--accent2)">v1.4.0</div></div>
+      <div class="v-chip"><div class="v-chip-label">Uptime</div><div style="font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--accent3)">99.8%</div></div>
+      <div class="v-chip"><div class="v-chip-label">Last Sync</div><div style="font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--text)">Just now</div></div>
+    </div>
+    <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:10px">Built by</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:'Syne',sans-serif">S</div><div><div style="font-weight:600;font-size:13px">Sharon</div><div style="font-size:11px;color:var(--text3)">Product &amp; Design</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent3),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:'Syne',sans-serif">A</div><div><div style="font-weight:600;font-size:13px">Aaron</div><div style="font-size:11px;color:var(--text3)">Engineering</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent6),var(--accent5));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:'Syne',sans-serif">S</div><div><div style="font-weight:600;font-size:13px">Sam</div><div style="font-size:11px;color:var(--text3)">Strategy &amp; Clinical</div></div></div>
+    </div>
+  </div></div>
+</template>
+
+<!-- ADD USER MODAL -->
+<div class="modal-overlay2" id="addUserModal">
+  <div class="modal2">
+    <div class="modal2-title">Add New User</div>
+    <div class="form-row">
+      <div class="field"><label>Full Name</label><input placeholder="Enter full name" id="newUserName"/></div>
+      <div class="field"><label>Role</label><select id="newUserRole"><option>Doctor</option><option>Nurse</option><option>Patient</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="field"><label>Email</label><input type="email" placeholder="user@cura.health" id="newUserEmail"/></div>
+      <div class="field"><label>Department</label><input placeholder="e.g. Cardiology" id="newUserDept"/></div>
+    </div>
+    <div class="form-row cols-1">
+      <div class="field"><label>Temporary Password</label><input type="password" placeholder="Set initial password"/></div>
+    </div>
+    <div class="modal2-foot">
+      <button class="app-btn app-btn-ghost" onclick="closeModal('addUserModal')">Cancel</button>
+      <button class="app-btn app-btn-primary" onclick="addUser()">Add User</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="toast-icon" id="toastIcon">✅</span><span id="toastMsg">Done</span></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Inject the About content into each role's about panel
+  document.addEventListener('DOMContentLoaded', () => {
+    const tpl = document.getElementById('aboutTpl');
+    ['admin','doctor','nurse','patient'].forEach(r => {
+      const target = document.getElementById('panel-' + r + '-about');
+      if (target && tpl) target.appendChild(tpl.content.cloneNode(true));
+    });
+  });
+</script>
+</body>
+</html>
