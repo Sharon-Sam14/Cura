@@ -4,9 +4,9 @@
 
 const USERS = {
   admin:   { name: 'Admin User',       icon: '🛡️',  label: 'Administrator' },
-  doctor:  { name: 'Dr. Alisha Rao',   icon: '🩻',  label: 'Doctor' },
+  doctor:  { name: 'Dr. Alisha Rao',   icon: '🩺',  label: 'Doctor' },
   nurse:   { name: 'Nurse Maria Joji', icon: '💉',  label: 'Nurse' },
-  patient: { name: 'Rajan Kumar',      icon: '🧑‍⚕️', label: 'Patient' },
+  patient: { name: 'Rajan Kumar',      icon: '🧑',  label: 'Patient' },
 };
 
 const NAV_CONFIG = {
