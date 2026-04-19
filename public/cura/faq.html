@@ -6,24 +6,30 @@
 <title>FAQ — Cura</title>
 <meta name="description" content="Frequently asked questions about Cura — security, roles, pricing, and more."/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/styles.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="css/theme.css"/>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html"><div class="logo-mark">🩺</div>Cura</a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#roles-section">Roles</a></li>
-    <li><a href="index.html#features-section">Features</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="team.html">Team</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <div class="nav-cta">
-    <button class="btn btn-ghost" onclick="openLogin()">Sign In</button>
-    <button class="btn btn-primary" onclick="openLogin()">Get Started →</button>
+<nav class="navbar navbar-expand-lg cura-nav">
+  <div class="container-fluid px-lg-4">
+    <a class="navbar-brand" href="index.html"><span class="logo-mark">🩺</span> Cura</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#roles-section">Roles</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#features-section">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="btn btn-cura-ghost btn-sm" onclick="openLogin()">Sign In</button>
+        <button class="btn btn-cura-primary btn-sm" onclick="openLogin()">Get Started →</button>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -36,101 +42,93 @@
 </section>
 
 <section class="section alt">
-  <div class="section-inner">
-    <div class="faq-list">
-      <div class="faq-item open">
-        <div class="faq-q">Is patient data secure on Cura? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Yes — every record is encrypted at rest with AES-256 and in transit with TLS 1.3. Role-based access control ensures users only see records they're explicitly authorized for, and every read/write is audit-logged.</div>
+  <div class="container">
+    <div class="accordion cura-faq" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">Is patient data secure on Cura?</button></h2>
+        <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes — every record is encrypted at rest with AES-256 and in transit with TLS 1.3. Role-based access control ensures users only see records they're explicitly authorized for, and every read/write is audit-logged.</div></div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">Do I need any special hardware? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">No. Cura runs entirely in your browser — laptop, tablet, or phone. The only requirement is a modern browser and an internet connection.</div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">Do I need any special hardware?</button></h2>
+        <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">No. Cura runs entirely in your browser — laptop, tablet, or phone. The only requirement is a modern browser and an internet connection.</div></div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">How do the four roles differ? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Administrators manage users and settings. Nurses log vitals and observations. Doctors view records, write prescriptions, and run consultations. Patients view their own data, prescriptions, and chat with their doctor.</div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">How do the four roles differ?</button></h2>
+        <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Administrators manage users and settings. Nurses log vitals and observations. Doctors view records, write prescriptions, and run consultations. Patients view their own data, prescriptions, and chat with their doctor.</div></div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">Can patients book their own appointments? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Yes. Patients can request appointments directly from their dashboard, and doctors see them in a unified calendar with status tracking.</div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">Can patients book their own appointments?</button></h2>
+        <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes. Patients can request appointments directly from their dashboard, and doctors see them in a unified calendar with status tracking.</div></div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">How quickly do vitals reach the doctor? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Instantly. The moment a nurse hits "Submit", the values appear on the assigned doctor's dashboard with abnormal readings highlighted automatically.</div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">How quickly do vitals reach the doctor?</button></h2>
+        <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Instantly. The moment a nurse hits "Submit", the values appear on the assigned doctor's dashboard with abnormal readings highlighted automatically.</div></div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">Is there a mobile app? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Cura is a fully responsive web app — it works beautifully on phones and tablets without needing an install. Native apps are on the roadmap.</div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">Is there a mobile app?</button></h2>
+        <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Cura is a fully responsive web app — it works beautifully on phones and tablets without needing an install. Native apps are on the roadmap.</div></div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">How do I get started? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Click "Get Started" or "Sign In", pick a role, and try the demo with any email and password — you'll be inside the dashboard in seconds.</div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q7">How do I get started?</button></h2>
+        <div id="q7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Click "Get Started" or "Sign In", pick a role, and try the demo with any email and password — you'll be inside the dashboard in seconds.</div></div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">Who built Cura? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Cura is crafted by Sharon, Aaron and Sam — a small, focused team obsessed with making healthcare feel modern. Read more on our <a href="team.html" style="color:var(--accent2)">Team page</a>.</div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q8">Who built Cura?</button></h2>
+        <div id="q8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Cura is crafted by Sharon, Aaron and Sam — a small, focused team obsessed with making healthcare feel modern. Read more on our <a href="team.html" style="color:var(--accent2)">Team page</a>.</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="cta-section">
-  <div class="cta-inner">
+  <div class="container" style="max-width:600px">
     <h2>Still have questions?</h2>
     <p>Our team usually replies within a few hours.</p>
-    <a href="contact.html" class="btn btn-primary btn-lg">Contact Us →</a>
+    <a href="contact.html" class="btn btn-cura-primary btn-lg">Contact Us →</a>
   </div>
 </section>
 
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a class="nav-logo" href="index.html"><div class="logo-mark">🩺</div>Cura</a>
-      <p>A cloud medical consultation platform built to bridge bedside care and remote expertise.</p>
+<footer class="cura-footer">
+  <div class="container">
+    <div class="row g-4 pb-4">
+      <div class="col-lg-5 footer-brand">
+        <a class="navbar-brand" href="index.html"><span class="logo-mark">🩺</span> Cura</a>
+        <p>A cloud medical consultation platform built to bridge bedside care and remote expertise.</p>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2"><h5>Product</h5><ul><li><a href="index.html#features-section">Features</a></li><li><a href="index.html#roles-section">Roles</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div class="col-6 col-md-3 col-lg-2"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="col-md-6 col-lg-3"><h5>Newsletter</h5><form onsubmit="return submitNewsletter(event)"><input type="email" class="form-control mb-2" placeholder="you@email.com" required/><button type="submit" class="btn btn-cura-primary w-100">Subscribe</button></form></div>
     </div>
-    <div class="footer-col"><h4>Product</h4><ul>
-      <li><a href="index.html#features-section">Features</a></li>
-      <li><a href="index.html#roles-section">Roles</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-    </ul></div>
-    <div class="footer-col"><h4>Company</h4><ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul></div>
-    <div class="footer-col"><h4>Newsletter</h4>
-      <form onsubmit="return submitNewsletter(event)">
-        <input type="email" placeholder="you@email.com" required style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;margin-bottom:8px"/>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Subscribe</button>
-      </form>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between gap-2">
+      <div>© 2026 Cura · Cloud Medical Consultation Platform</div>
+      <div class="footer-credits">Crafted with ♥ by <b>Sharon</b>, <b>Aaron</b> &amp; <b>Sam</b></div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <div>© 2026 Cura · Cloud Medical Consultation Platform</div>
-    <div class="footer-credits">Crafted with ♥ by <b>Sharon</b>, <b>Aaron</b> &amp; <b>Sam</b></div>
   </div>
 </footer>
 
-<div class="login-modal-overlay" id="loginModal">
-  <div class="login-modal">
-    <button class="modal-close" onclick="closeLogin()">✕</button>
-    <div class="modal-logo"><div class="modal-logo-mark">🩺</div><div class="modal-logo-text">Cura</div></div>
-    <div class="modal-title">Sign in to continue</div>
-    <div class="modal-sub">Select your role then enter your credentials</div>
-    <div class="role-select-grid">
-      <button class="role-select-btn" id="rs-admin" onclick="pickRole('admin')"><span class="rs-icon">🛡️</span>Administrator</button>
-      <button class="role-select-btn" id="rs-doctor" onclick="pickRole('doctor')"><span class="rs-icon">🩻</span>Doctor</button>
-      <button class="role-select-btn" id="rs-nurse" onclick="pickRole('nurse')"><span class="rs-icon">💉</span>Nurse</button>
-      <button class="role-select-btn" id="rs-patient" onclick="pickRole('patient')"><span class="rs-icon">🧑‍⚕️</span>Patient</button>
-    </div>
-    <div class="form-group"><label>Email Address</label><input type="email" id="loginEmail" placeholder="you@cura.health" onkeydown="if(event.key==='Enter')doLogin()"/></div>
-    <div class="form-group"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
-    <div class="login-error" id="loginErr">⚠ Please select a role and enter credentials.</div>
-    <button class="login-submit" onclick="doLogin()">Sign In →</button>
-    <div class="demo-hint">Demo: select any role · use any email &amp; password</div>
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content cura-modal p-3"><div class="modal-body">
+      <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
+      <div class="modal-logo"><div class="modal-logo-mark">🩺</div><div class="modal-logo-text">Cura</div></div>
+      <div class="modal-title-cura">Sign in to continue</div>
+      <div class="modal-sub">Select your role then enter your credentials</div>
+      <div class="row g-2 mb-3">
+        <div class="col-6"><button class="role-select-btn" id="rs-admin" onclick="pickRole('admin')"><span class="rs-icon">🛡️</span>Administrator</button></div>
+        <div class="col-6"><button class="role-select-btn" id="rs-doctor" onclick="pickRole('doctor')"><span class="rs-icon">🩺</span>Doctor</button></div>
+        <div class="col-6"><button class="role-select-btn" id="rs-nurse" onclick="pickRole('nurse')"><span class="rs-icon">💉</span>Nurse</button></div>
+        <div class="col-6"><button class="role-select-btn" id="rs-patient" onclick="pickRole('patient')"><span class="rs-icon">🧑</span>Patient</button></div>
+      </div>
+      <div class="mb-3"><label class="form-label">Email Address</label><input type="email" class="form-control" id="loginEmail" placeholder="you@cura.health" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <div class="mb-3"><label class="form-label">Password</label><input type="password" class="form-control" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <div class="login-error" id="loginErr">⚠ Please select a role and enter credentials.</div>
+      <button class="btn btn-cura-primary w-100 py-2 mt-2" onclick="doLogin()">Sign In →</button>
+      <div class="demo-hint">Demo: select any role · use any email &amp; password</div>
+    </div></div>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

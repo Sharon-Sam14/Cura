@@ -1,19 +1,27 @@
 /* ════════════════════════════════════════════════
-   CURA — Public Pages JS (Login modal, FAQ, Contact, Toast)
+   CURA — Public Pages JS (Bootstrap modal, contact, toast)
+   Authors: Sharon · Aaron · Sam
 ══════════════════════════════════════════════════ */
 
-// ── LOGIN MODAL ──
 let selectedLoginRole = null;
+let _loginModalInstance = null;
+
+function getLoginModal() {
+  const el = document.getElementById('loginModal');
+  if (!el || !window.bootstrap) return null;
+  if (!_loginModalInstance) _loginModalInstance = new bootstrap.Modal(el);
+  return _loginModalInstance;
+}
 
 function openLogin(role) {
-  const modal = document.getElementById('loginModal');
+  const modal = getLoginModal();
   if (!modal) { window.location.href = 'index.html#login'; return; }
-  modal.classList.add('open');
+  modal.show();
   if (role) pickRole(role);
 }
 function closeLogin() {
-  const m = document.getElementById('loginModal');
-  if (m) m.classList.remove('open');
+  const modal = getLoginModal();
+  if (modal) modal.hide();
 }
 function pickRole(role) {
   selectedLoginRole = role;
@@ -29,23 +37,9 @@ function doLogin() {
   const err   = document.getElementById('loginErr');
   if (!selectedLoginRole) { err.textContent = '⚠ Please select your role.'; err.style.display = 'block'; return; }
   if (!email || !pass) { err.textContent = '⚠ Please enter your email and password.'; err.style.display = 'block'; return; }
-  // Persist for app.html to pick up
   sessionStorage.setItem('cura_role', selectedLoginRole);
   sessionStorage.setItem('cura_email', email);
   window.location.href = 'app.html';
-}
-
-// ── FAQ ACCORDION ──
-function initFAQ() {
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const q = item.querySelector('.faq-q');
-    if (!q) return;
-    q.addEventListener('click', () => {
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
-    });
-  });
 }
 
 // ── CONTACT FORM ──
@@ -54,10 +48,7 @@ function submitContact(e) {
   const name = document.getElementById('cfName')?.value.trim();
   const email = document.getElementById('cfEmail')?.value.trim();
   const msg = document.getElementById('cfMsg')?.value.trim();
-  if (!name || !email || !msg) {
-    showToast('Please fill in all required fields', '⚠');
-    return false;
-  }
+  if (!name || !email || !msg) { showToast('Please fill in all required fields', '⚠'); return false; }
   showToast(`Thanks ${name.split(' ')[0]}! We'll reply within 24 hours.`, '✉');
   e.target.reset();
   return false;
@@ -79,7 +70,7 @@ function showToast(msg, icon = '✅') {
   if (!t) {
     t = document.createElement('div');
     t.id = 'toast';
-    t.className = 'toast';
+    t.className = 'toast-cura';
     t.innerHTML = `<span class="toast-icon" id="toastIcon">${icon}</span><span id="toastMsg">${msg}</span>`;
     document.body.appendChild(t);
   } else {
@@ -132,7 +123,7 @@ function initCounters() {
 // ── ACTIVE NAV ──
 function initActiveNav() {
   const path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(a => {
+  document.querySelectorAll('.navbar.cura-nav .nav-link').forEach(a => {
     const href = a.getAttribute('href');
     if (href === path || (path === '' && href === 'index.html')) a.classList.add('active');
   });
@@ -140,15 +131,8 @@ function initActiveNav() {
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
-  initFAQ();
   initReveal();
   initCounters();
   initActiveNav();
-
-  // Close login modal on overlay click
-  const lm = document.getElementById('loginModal');
-  if (lm) lm.addEventListener('click', e => { if (e.target === lm) closeLogin(); });
-
-  // Open login on hash
   if (window.location.hash === '#login') openLogin();
 });
