@@ -1,9 +1,17 @@
 /* ════════════════════════════════════════════════
-   CURA — App Dashboard Behaviour
+   CURA — App Dashboard Behaviour (Bootstrap-aware)
 ══════════════════════════════════════════════════ */
 
 let currentRole = sessionStorage.getItem('cura_role') || 'doctor';
 if (!USERS[currentRole]) currentRole = 'doctor';
+
+let _addUserModalInstance = null;
+function getAddUserModal() {
+  const el = document.getElementById('addUserModal');
+  if (!el || !window.bootstrap) return null;
+  if (!_addUserModalInstance) _addUserModalInstance = new bootstrap.Modal(el);
+  return _addUserModalInstance;
+}
 
 // ── BOOT ──
 function boot() {
@@ -39,7 +47,6 @@ function showPanel(role, id) {
   const ni = document.getElementById(`nav-${id}`);
   if (ni) ni.classList.add('active');
   document.getElementById('topbarTitle').textContent = PANEL_LABELS[id] || id;
-  // close mobile/sidebar on patient nav
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -73,11 +80,11 @@ function clearVitals() {
 function addMed() {
   const list = document.getElementById('medList');
   const div = document.createElement('div');
-  div.className = 'form-row cols-3 med-entry';
+  div.className = 'row g-3 mb-3 med-entry';
   div.innerHTML = `
-    <div class="field"><label>Medicine Name</label><input placeholder="e.g. Medicine 5mg"/></div>
-    <div class="field"><label>Dosage</label><input placeholder="e.g. 1 tablet"/></div>
-    <div class="field"><label>Frequency</label><select><option>Once daily</option><option>Twice daily</option><option>Thrice daily</option><option>As needed</option><option>At bedtime</option></select></div>`;
+    <div class="col-md-4"><label class="form-label">Medicine Name</label><input class="form-control" placeholder="e.g. Medicine 5mg"/></div>
+    <div class="col-md-4"><label class="form-label">Dosage</label><input class="form-control" placeholder="e.g. 1 tablet"/></div>
+    <div class="col-md-4"><label class="form-label">Frequency</label><select class="form-select"><option>Once daily</option><option>Twice daily</option><option>Thrice daily</option><option>As needed</option><option>At bedtime</option></select></div>`;
   list.appendChild(div);
 }
 function savePrescription() {
@@ -101,14 +108,8 @@ function sendChat(role) {
   area.scrollTop = area.scrollHeight;
   input.value = '';
 
-  // Simulate reply
   setTimeout(() => {
-    const replies = [
-      "Got it — let me check.",
-      "Thanks for the update.",
-      "I'll respond shortly.",
-      "Noted. Please monitor.",
-    ];
+    const replies = ["Got it — let me check.","Thanks for the update.","I'll respond shortly.","Noted. Please monitor."];
     const r = document.createElement('div');
     r.className = 'msg msg-in';
     const t2 = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
@@ -120,31 +121,22 @@ function sendChat(role) {
 
 // ── ADMIN ──
 function openAddUserModal() {
-  document.getElementById('addUserModal').classList.add('open');
-}
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
+  const m = getAddUserModal();
+  if (m) m.show();
 }
 function addUser() {
   const name = document.getElementById('newUserName').value.trim();
   if (!name) { showToast('Please enter a name', '⚠'); return; }
   const role = document.getElementById('newUserRole').value;
   const dept = document.getElementById('newUserDept').value || '—';
-  const cls  = { Doctor:'badge-blue', Nurse:'badge-purple', Patient:'badge-amber' }[role];
+  const cls  = { Doctor:'bg-cura-blue', Nurse:'bg-cura-purple', Patient:'bg-cura-amber' }[role];
   const table = document.getElementById('adminUserTable');
   const tr = document.createElement('tr');
-  tr.innerHTML = `<td><b>${name}</b></td><td><span class="badge ${cls}">${role}</span></td><td>${dept}</td><td><span class="badge badge-green">Active</span></td><td><button class="app-btn app-btn-ghost app-btn-sm">Edit</button></td>`;
+  tr.innerHTML = `<td><b>${name}</b></td><td><span class="badge ${cls}">${role}</span></td><td>${dept}</td><td><span class="badge bg-cura-green">Active</span></td><td><button class="btn btn-cura-ghost btn-sm">Edit</button></td>`;
   table.appendChild(tr);
-  closeModal('addUserModal');
+  const m = getAddUserModal();
+  if (m) m.hide();
   showToast(`User ${name} added successfully`, '✅');
-}
-
-// ── SETTINGS TABS ──
-function switchSettingsTab(tabId, btn) {
-  document.querySelectorAll('.settings-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('settings-' + tabId).classList.add('active');
-  btn.classList.add('active');
 }
 
 // ── TASKS ──
@@ -173,8 +165,4 @@ function showToast(msg, icon = '✅') {
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
   boot();
-  ['addUserModal'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('click', e => { if (e.target === el) closeModal(id); });
-  });
 });

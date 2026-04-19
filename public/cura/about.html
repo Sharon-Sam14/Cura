@@ -6,28 +6,33 @@
 <title>About — Cura</title>
 <meta name="description" content="Cura's mission, story, and the principles guiding our cloud medical consultation platform."/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/styles.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="css/theme.css"/>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html"><div class="logo-mark">🩺</div>Cura</a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#roles-section">Roles</a></li>
-    <li><a href="index.html#features-section">Features</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="team.html">Team</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <div class="nav-cta">
-    <button class="btn btn-ghost" onclick="openLogin()">Sign In</button>
-    <button class="btn btn-primary" onclick="openLogin()">Get Started →</button>
+<nav class="navbar navbar-expand-lg cura-nav">
+  <div class="container-fluid px-lg-4">
+    <a class="navbar-brand" href="index.html"><span class="logo-mark">🩺</span> Cura</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#roles-section">Roles</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#features-section">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="btn btn-cura-ghost btn-sm" onclick="openLogin()">Sign In</button>
+        <button class="btn btn-cura-primary btn-sm" onclick="openLogin()">Get Started →</button>
+      </div>
+    </div>
   </div>
 </nav>
 
-<!-- HERO STRIP -->
 <section class="hero" style="min-height:auto;padding:90px 40px 60px">
   <div class="hero-grid"></div>
   <div class="hero-orbs"><div class="orb orb1"></div><div class="orb orb2"></div></div>
@@ -36,108 +41,102 @@
   <p>We believe care shouldn't stop at the hospital walls. Cura unifies bedside data and remote expertise into a single, secure cloud platform.</p>
 </section>
 
-<!-- MISSION + PILLARS -->
 <section class="section alt">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div>
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6">
         <div class="section-tag">Our Mission</div>
         <h2 class="section-title">Closing the gap between bedside &amp; expertise</h2>
         <p class="about-mission">Cura was born from a simple observation: critical clinical decisions are too often delayed by paper charts, scattered systems, and the physical distance between patients and specialists. We're here to remove every one of those frictions.</p>
-        <div class="hero-stats" style="justify-content:flex-start;gap:36px;animation:none">
+        <div class="d-flex flex-wrap gap-4 mt-3">
           <div class="stat"><div class="stat-number"><span data-count="1240">1240</span>+</div><div class="stat-label">Patients served</div></div>
           <div class="stat"><div class="stat-number"><span data-count="82">82</span></div><div class="stat-label">Care providers</div></div>
           <div class="stat"><div class="stat-number"><span data-count="99.8" data-suffix="%">99.8%</span></div><div class="stat-label">Uptime</div></div>
         </div>
       </div>
-      <div class="about-card">
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:16px">Our Pillars</div>
-        <div class="about-pillars">
-          <div class="pillar"><div class="pillar-icon">🔐</div><div class="pillar-title">Security First</div><div class="pillar-desc">End-to-end encryption, strict RBAC, audited access on every record.</div></div>
-          <div class="pillar"><div class="pillar-icon">⚡</div><div class="pillar-title">Real-Time</div><div class="pillar-desc">Vitals propagate instantly. No polling, no waiting, no surprises.</div></div>
-          <div class="pillar"><div class="pillar-icon">🧭</div><div class="pillar-title">Clarity</div><div class="pillar-desc">Each role sees exactly what they need — no clutter, no compromise.</div></div>
-          <div class="pillar"><div class="pillar-icon">🌍</div><div class="pillar-title">Accessibility</div><div class="pillar-desc">Cloud-native means care reaches anywhere with a browser and a connection.</div></div>
+      <div class="col-lg-6">
+        <div class="about-card">
+          <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:16px">Our Pillars</div>
+          <div class="row g-2">
+            <div class="col-6"><div class="pillar"><div class="pillar-icon">🔐</div><div class="pillar-title">Security First</div><p class="pillar-desc">End-to-end encryption, strict RBAC, audited access on every record.</p></div></div>
+            <div class="col-6"><div class="pillar"><div class="pillar-icon">⚡</div><div class="pillar-title">Real-Time</div><p class="pillar-desc">Vitals propagate instantly. No polling, no waiting, no surprises.</p></div></div>
+            <div class="col-6"><div class="pillar"><div class="pillar-icon">🧭</div><div class="pillar-title">Clarity</div><p class="pillar-desc">Each role sees exactly what they need — no clutter, no compromise.</p></div></div>
+            <div class="col-6"><div class="pillar"><div class="pillar-icon">🌍</div><div class="pillar-title">Accessibility</div><p class="pillar-desc">Cloud-native means care reaches anywhere with a browser and a connection.</p></div></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TIMELINE / STORY -->
 <section class="section">
-  <div class="section-inner">
-    <div class="section-header">
+  <div class="container">
+    <div class="text-center mb-5">
       <div class="section-tag centered">Our Story</div>
       <h2 class="section-title">From sketch to platform</h2>
-      <p class="section-sub">A short journey of how Cura came to life.</p>
+      <p class="section-sub mx-auto" style="max-width:540px">A short journey of how Cura came to life.</p>
     </div>
-    <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:16px">
-      <div class="feature-item"><div class="fi-icon" style="background:rgba(139,92,246,.12)">💡</div><div><div class="fi-title">The Spark</div><div class="fi-desc">Sharon, Aaron and Sam noticed how clinical decisions were slowed down by fragmented tools — a whiteboard sketch became the first wireframe.</div></div></div>
-      <div class="feature-item"><div class="fi-icon" style="background:rgba(59,130,246,.12)">🛠️</div><div><div class="fi-title">First Prototype</div><div class="fi-desc">A vitals form synced to a single doctor dashboard. It was crude, but it proved that real-time clinical data could feel effortless.</div></div></div>
-      <div class="feature-item"><div class="fi-icon" style="background:rgba(16,185,129,.12)">🚀</div><div><div class="fi-title">Going Multi-Role</div><div class="fi-desc">Nurses, doctors, patients, and admins each got dedicated portals — every interface scoped to their workflow and permissions.</div></div></div>
-      <div class="feature-item"><div class="fi-icon" style="background:rgba(245,158,11,.12)">🌟</div><div><div class="fi-title">Today</div><div class="fi-desc">Cura is a complete cloud medical consultation platform — and we're just getting started.</div></div></div>
+    <div class="mx-auto" style="max-width:760px">
+      <div class="row g-3">
+        <div class="col-12"><div class="feature-item"><div class="fi-icon" style="background:rgba(139,92,246,.12)">💡</div><div><div class="fi-title">The Spark</div><div class="fi-desc">Sharon, Aaron and Sam noticed how clinical decisions were slowed down by fragmented tools — a whiteboard sketch became the first wireframe.</div></div></div></div>
+        <div class="col-12"><div class="feature-item"><div class="fi-icon" style="background:rgba(59,130,246,.12)">🛠️</div><div><div class="fi-title">First Prototype</div><div class="fi-desc">A vitals form synced to a single doctor dashboard. It was crude, but it proved that real-time clinical data could feel effortless.</div></div></div></div>
+        <div class="col-12"><div class="feature-item"><div class="fi-icon" style="background:rgba(16,185,129,.12)">🚀</div><div><div class="fi-title">Going Multi-Role</div><div class="fi-desc">Nurses, doctors, patients, and admins each got dedicated portals — every interface scoped to their workflow and permissions.</div></div></div></div>
+        <div class="col-12"><div class="feature-item"><div class="fi-icon" style="background:rgba(245,158,11,.12)">🌟</div><div><div class="fi-title">Today</div><div class="fi-desc">Cura is a complete cloud medical consultation platform — and we're just getting started.</div></div></div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section">
-  <div class="cta-inner">
+  <div class="container" style="max-width:600px">
     <h2>Curious to see it in action?</h2>
     <p>Pick a role and explore the dashboard — no signup required.</p>
-    <button class="btn btn-primary btn-lg" onclick="openLogin()">Try the Demo →</button>
+    <button class="btn btn-cura-primary btn-lg" onclick="openLogin()">Try the Demo →</button>
   </div>
 </section>
 
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a class="nav-logo" href="index.html"><div class="logo-mark">🩺</div>Cura</a>
-      <p>A cloud medical consultation platform built to bridge bedside care and remote expertise.</p>
+<footer class="cura-footer">
+  <div class="container">
+    <div class="row g-4 pb-4">
+      <div class="col-lg-5 footer-brand">
+        <a class="navbar-brand" href="index.html"><span class="logo-mark">🩺</span> Cura</a>
+        <p>A cloud medical consultation platform built to bridge bedside care and remote expertise.</p>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2"><h5>Product</h5><ul><li><a href="index.html#features-section">Features</a></li><li><a href="index.html#roles-section">Roles</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div class="col-6 col-md-3 col-lg-2"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="col-md-6 col-lg-3"><h5>Newsletter</h5><form onsubmit="return submitNewsletter(event)"><input type="email" class="form-control mb-2" placeholder="you@email.com" required/><button type="submit" class="btn btn-cura-primary w-100">Subscribe</button></form></div>
     </div>
-    <div class="footer-col"><h4>Product</h4><ul>
-      <li><a href="index.html#features-section">Features</a></li>
-      <li><a href="index.html#roles-section">Roles</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-    </ul></div>
-    <div class="footer-col"><h4>Company</h4><ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul></div>
-    <div class="footer-col"><h4>Newsletter</h4>
-      <form onsubmit="return submitNewsletter(event)">
-        <input type="email" placeholder="you@email.com" required style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;margin-bottom:8px"/>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Subscribe</button>
-      </form>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between gap-2">
+      <div>© 2026 Cura · Cloud Medical Consultation Platform</div>
+      <div class="footer-credits">Crafted with ♥ by <b>Sharon</b>, <b>Aaron</b> &amp; <b>Sam</b></div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <div>© 2026 Cura · Cloud Medical Consultation Platform</div>
-    <div class="footer-credits">Crafted with ♥ by <b>Sharon</b>, <b>Aaron</b> &amp; <b>Sam</b></div>
   </div>
 </footer>
 
-<div class="login-modal-overlay" id="loginModal">
-  <div class="login-modal">
-    <button class="modal-close" onclick="closeLogin()">✕</button>
-    <div class="modal-logo"><div class="modal-logo-mark">🩺</div><div class="modal-logo-text">Cura</div></div>
-    <div class="modal-title">Sign in to continue</div>
-    <div class="modal-sub">Select your role then enter your credentials</div>
-    <div class="role-select-grid">
-      <button class="role-select-btn" id="rs-admin" onclick="pickRole('admin')"><span class="rs-icon">🛡️</span>Administrator</button>
-      <button class="role-select-btn" id="rs-doctor" onclick="pickRole('doctor')"><span class="rs-icon">🩻</span>Doctor</button>
-      <button class="role-select-btn" id="rs-nurse" onclick="pickRole('nurse')"><span class="rs-icon">💉</span>Nurse</button>
-      <button class="role-select-btn" id="rs-patient" onclick="pickRole('patient')"><span class="rs-icon">🧑‍⚕️</span>Patient</button>
-    </div>
-    <div class="form-group"><label>Email Address</label><input type="email" id="loginEmail" placeholder="you@cura.health" onkeydown="if(event.key==='Enter')doLogin()"/></div>
-    <div class="form-group"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
-    <div class="login-error" id="loginErr">⚠ Please select a role and enter credentials.</div>
-    <button class="login-submit" onclick="doLogin()">Sign In →</button>
-    <div class="demo-hint">Demo: select any role · use any email &amp; password</div>
+<!-- LOGIN MODAL -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content cura-modal p-3"><div class="modal-body">
+      <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
+      <div class="modal-logo"><div class="modal-logo-mark">🩺</div><div class="modal-logo-text">Cura</div></div>
+      <div class="modal-title-cura">Sign in to continue</div>
+      <div class="modal-sub">Select your role then enter your credentials</div>
+      <div class="row g-2 mb-3">
+        <div class="col-6"><button class="role-select-btn" id="rs-admin" onclick="pickRole('admin')"><span class="rs-icon">🛡️</span>Administrator</button></div>
+        <div class="col-6"><button class="role-select-btn" id="rs-doctor" onclick="pickRole('doctor')"><span class="rs-icon">🩺</span>Doctor</button></div>
+        <div class="col-6"><button class="role-select-btn" id="rs-nurse" onclick="pickRole('nurse')"><span class="rs-icon">💉</span>Nurse</button></div>
+        <div class="col-6"><button class="role-select-btn" id="rs-patient" onclick="pickRole('patient')"><span class="rs-icon">🧑</span>Patient</button></div>
+      </div>
+      <div class="mb-3"><label class="form-label">Email Address</label><input type="email" class="form-control" id="loginEmail" placeholder="you@cura.health" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <div class="mb-3"><label class="form-label">Password</label><input type="password" class="form-control" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <div class="login-error" id="loginErr">⚠ Please select a role and enter credentials.</div>
+      <button class="btn btn-cura-primary w-100 py-2 mt-2" onclick="doLogin()">Sign In →</button>
+      <div class="demo-hint">Demo: select any role · use any email &amp; password</div>
+    </div></div>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
