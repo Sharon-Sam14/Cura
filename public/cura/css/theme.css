@@ -487,6 +487,52 @@ body.app { display: flex; flex-direction: row; min-height: 100vh; }
 /* Inline labels for in-app forms */
 .field-label { display: block; font-size: 11px; font-weight: 600; color: var(--text2); margin-bottom: 7px; letter-spacing: .4px; text-transform: uppercase; }
 
+/* ── SKELETON LOADERS ── */
+@keyframes curaShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.cura-skeleton {
+  background: linear-gradient(90deg,
+    var(--surface2) 0%,
+    var(--surface3) 50%,
+    var(--surface2) 100%);
+  background-size: 200% 100%;
+  animation: curaShimmer 1.4s ease-in-out infinite;
+  border-radius: 8px;
+  display: block;
+}
+.cura-skeleton.line   { height: 12px; margin: 6px 0; }
+.cura-skeleton.title  { height: 18px; width: 40%; margin-bottom: 14px; }
+.cura-skeleton.chart  { height: 220px; border-radius: 12px; }
+.cura-skeleton.chip   { height: 88px; border-radius: 12px; }
+.skeleton-grid { display: grid; gap: 14px; }
+.skeleton-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 700px) { .skeleton-grid.cols-2 { grid-template-columns: 1fr; } }
+
+/* ── MOBILE SIDEBAR (hamburger) ── */
+.sidebar-toggle {
+  display: none;
+  width: 38px; height: 38px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  align-items: center; justify-content: center;
+  font-size: 18px; color: var(--text);
+  cursor: pointer; margin-right: 12px;
+  transition: all .18s;
+}
+.sidebar-toggle:hover { border-color: var(--border-glow); background: var(--surface3); }
+.sidebar-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(5,8,15,.65);
+  backdrop-filter: blur(3px);
+  z-index: 1040;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.sidebar-backdrop.show { opacity: 1; pointer-events: auto; }
+
 /* RESPONSIVE */
 @media (max-width: 991.98px) {
   .navbar.cura-nav { padding: 0.6rem 1rem; }
@@ -497,7 +543,31 @@ body.app { display: flex; flex-direction: row; min-height: 100vh; }
   .chat-layout { flex-direction: column; height: auto; }
   .chat-contacts { width: 100%; border-right: none; border-bottom: 1px solid var(--border); padding: 0 0 12px; max-height: 140px; }
 }
+@media (max-width: 880px) {
+  .sidebar-toggle { display: inline-flex; }
+  .sidebar {
+    position: fixed; top: 0; left: 0;
+    height: 100vh; width: 260px;
+    z-index: 1050;
+    transform: translateX(-105%);
+    transition: transform .28s cubic-bezier(.4,0,.2,1);
+    box-shadow: 4px 0 28px rgba(0,0,0,.5);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .app-main { width: 100%; }
+  .app-topbar { padding: 0 18px; }
+}
 @media (max-width: 640px) {
-  .sidebar { width: 200px; }
   .app-content { padding: 20px 18px; }
+  .topbar-title { font-size: 16px; }
+}
+
+/* ── PRINT STYLESHEET (prescriptions / reports) ── */
+@media print {
+  body, .app-main, .app-content { background: #fff !important; color: #000 !important; }
+  .sidebar, .app-topbar, .sidebar-toggle, .sidebar-backdrop, .toast-cura, .btn { display: none !important; }
+  .panel { display: none !important; }
+  .panel.print-active { display: block !important; }
+  .card.cura-card { border: 1px solid #999 !important; box-shadow: none !important; background: #fff !important; }
+  * { color: #000 !important; }
 }
