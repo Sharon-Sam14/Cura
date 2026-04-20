@@ -15,13 +15,13 @@
 <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar(false)"></div>
 
 <!-- ═══ SIDEBAR ═══ -->
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
   <div class="sidebar-head">
-    <div class="sidebar-logo-mark">🩺</div>
+    <div class="sidebar-logo-mark"><i class="bi bi-heart-pulse-fill"></i></div>
     <div class="sidebar-logo-text">Cura</div>
   </div>
   <div class="sidebar-role-block">
-    <div class="srb-icon" id="sRoleIcon">👤</div>
+    <div class="srb-icon" id="sRoleIcon"><i class="bi bi-person-circle"></i></div>
     <div>
       <div class="srb-role" id="sRoleName">Role</div>
       <div class="srb-name" id="sUserName">User</div>
@@ -29,16 +29,19 @@
   </div>
   <div class="sidebar-nav" id="sidebarNav"></div>
   <div class="sidebar-foot">
-    <button class="btn btn-cura-danger w-100" onclick="doLogout()">⬅ Sign Out</button>
+    <button class="btn btn-cura-danger w-100" onclick="doLogout()"><i class="bi bi-box-arrow-left me-1"></i> Sign Out</button>
   </div>
 </div>
 
 <!-- ═══ MAIN ═══ -->
 <div class="app-main">
   <div class="app-topbar">
-    <div class="topbar-title" id="topbarTitle">Dashboard</div>
+    <div class="d-flex align-items-center">
+      <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" aria-label="Toggle menu"><i class="bi bi-list"></i></button>
+      <div class="topbar-title" id="topbarTitle">Dashboard</div>
+    </div>
     <div class="topbar-right">
-      <div class="notif-btn" title="Notifications">🔔<span class="notif-dot"></span></div>
+      <div class="notif-btn" title="Notifications"><i class="bi bi-bell-fill"></i><span class="notif-dot"></span></div>
       <div class="topbar-avatar" id="topbarAv">U</div>
     </div>
   </div>
