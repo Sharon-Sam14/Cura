@@ -488,19 +488,29 @@
       </div>
     </div>
 
-    <!-- ══ PATIENT: APPOINTMENTS ══ -->
+    <!-- ══ PATIENT: APPOINTMENTS (real calendar booking) ══ -->
     <div class="panel" id="panel-patient-appointments">
-      <div class="card cura-card">
-        <div class="card-header"><span class="card-title">My Appointments</span><button class="btn btn-cura-primary btn-sm" onclick="showToast('Booking request sent to Dr. Alisha Rao','📅')">＋ Request Appointment</button></div>
-        <div class="card-body">
-          <div class="row g-3">
-            <div class="col-md-6"><div class="appt-card"><div class="appt-time">Mar 14 · 10:30</div><div class="appt-patient">Dr. Alisha Rao</div><div class="appt-meta">Follow-up · Cardiology</div><div class="mt-2"><span class="badge bg-cura-cyan">Confirmed</span></div></div></div>
-            <div class="col-md-6"><div class="appt-card"><div class="appt-time">Mar 28 · 09:00</div><div class="appt-patient">Dr. Alisha Rao</div><div class="appt-meta">Routine BP review</div><div class="mt-2"><span class="badge bg-cura-amber">Pending</span></div></div></div>
+      <div class="row g-3">
+        <div class="col-lg-7">
+          <div class="cura-calendar">
+            <div class="cura-cal-head">
+              <button onclick="CuraCalendar.prevMonth()" aria-label="Prev"><i class="bi bi-chevron-left"></i></button>
+              <div class="cal-month-label" id="curaCalMonth">—</div>
+              <button onclick="CuraCalendar.nextMonth()" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
+            </div>
+            <div class="cura-cal-grid" id="curaCalGrid"></div>
+            <div style="font-size:11px;color:var(--text3);margin-top:14px;display:flex;gap:14px;flex-wrap:wrap">
+              <span><i class="bi bi-circle-fill" style="color:var(--accent3);font-size:8px"></i> Booked</span>
+              <span><i class="bi bi-square" style="color:var(--accent2)"></i> Today</span>
+            </div>
           </div>
-          <div style="margin-top:24px;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1px">Past Appointments</div>
-          <div class="row g-3 mt-1" style="opacity:.7">
-            <div class="col-md-6"><div class="appt-card"><div class="appt-time">Feb 20 · 11:00</div><div class="appt-patient">Dr. Alisha Rao</div><div class="appt-meta">Initial consult</div><div class="mt-2"><span class="badge bg-cura-green">Done</span></div></div></div>
-            <div class="col-md-6"><div class="appt-card"><div class="appt-time">Jan 15 · 14:30</div><div class="appt-patient">Dr. Philip Mathew</div><div class="appt-meta">Second opinion</div><div class="mt-2"><span class="badge bg-cura-green">Done</span></div></div></div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card cura-card mb-3"><div class="card-header"><span class="card-title">Book a slot</span></div>
+            <div class="card-body" id="curaCalSlots"></div>
+          </div>
+          <div class="card cura-card"><div class="card-header"><span class="card-title">Upcoming</span></div>
+            <div class="card-body" id="curaUpcomingList"></div>
           </div>
         </div>
       </div>
@@ -668,9 +678,13 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 <script src="js/data.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/app.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/prescription-pdf.js"></script>
+<script src="js/symptom-checker.js"></script>
 <script src="js/analytics.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
