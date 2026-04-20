@@ -417,6 +417,9 @@
 
     <!-- ══ PATIENT: DASHBOARD ══ -->
     <div class="panel" id="panel-patient-dashboard">
+      <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-cura-primary btn-sm" onclick="openSymptomChecker()"><i class="bi bi-clipboard2-check"></i> Symptom Checker</button>
+      </div>
       <div class="row g-3 mb-4">
         <div class="col-md-4"><div class="stat-card" style="--stripe:var(--accent)"><div class="sc-label">My Doctor <span class="sc-icon">👨‍⚕️</span></div><div class="sc-value" style="font-size:17px;margin-top:4px">Dr. Alisha Rao</div><div class="sc-change up">Cardiology</div></div></div>
         <div class="col-md-4"><div class="stat-card" style="--stripe:var(--accent3)"><div class="sc-label">Active Prescriptions <span class="sc-icon">💊</span></div><div class="sc-value">2</div></div></div>
@@ -662,6 +665,19 @@
         <button class="btn btn-cura-ghost" data-bs-dismiss="modal">Cancel</button>
         <button class="btn btn-cura-primary" onclick="addUser()">Add User</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- SYMPTOM CHECKER MODAL -->
+<div class="modal fade" id="symptomCheckerModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content cura-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" style="font-family:'Syne',sans-serif;font-weight:700"><i class="bi bi-clipboard2-pulse"></i> Symptom Checker</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="symptomCheckerBody"></div>
     </div>
   </div>
 </div>
