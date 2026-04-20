@@ -212,20 +212,13 @@
       </div>
     </div>
 
-    <!-- ══ DOCTOR: APPOINTMENTS ══ -->
+    <!-- ══ DOCTOR: APPOINTMENTS (live agenda from bookings) ══ -->
     <div class="panel" id="panel-doctor-appointments">
       <div class="card cura-card">
-        <div class="card-header"><span class="card-title">Upcoming Appointments</span><button class="btn btn-cura-primary btn-sm">＋ New Slot</button></div>
-        <div class="card-body">
-          <div class="row g-3">
-            <div class="col-md-6 col-lg-4"><div class="appt-card"><div class="appt-time">09:00 — 09:20</div><div class="appt-patient">Rajan Kumar</div><div class="appt-meta">Follow-up · Hypertension</div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="appt-card"><div class="appt-time">10:30 — 11:00</div><div class="appt-patient">Meera Pillai</div><div class="appt-meta">New Visit · Asthma</div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="appt-card"><div class="appt-time">11:45 — 12:15</div><div class="appt-patient">Saji Thomas</div><div class="appt-meta">Consultation · Diabetes</div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="appt-card"><div class="appt-time">14:00 — 14:20</div><div class="appt-patient">Anita George</div><div class="appt-meta">Follow-up · Migraine</div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="appt-card"><div class="appt-time">15:30 — 16:00</div><div class="appt-patient">Vinod Menon</div><div class="appt-meta">First Consult · General</div></div></div>
-            <div class="col-md-6 col-lg-4"><div class="appt-card"><div class="appt-time">16:30 — 17:00</div><div class="appt-patient">Lakshmi Iyer</div><div class="appt-meta">Follow-up · Cardiology</div></div></div>
-          </div>
+        <div class="card-header"><span class="card-title">Patient Bookings — Agenda</span>
+          <span style="font-size:11px;color:var(--text3)">Auto-syncs with patient bookings</span>
         </div>
+        <div class="card-body" id="curaDoctorAgenda"></div>
       </div>
     </div>
 
