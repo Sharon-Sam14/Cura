@@ -83,6 +83,13 @@ function showPanel(role, id) {
   if (ni) ni.classList.add('active');
   document.getElementById('topbarTitle').textContent = PANEL_LABELS[id] || id;
   if (window.CuraStore) CuraStore.setPref('lastPanel', id);
+  // Calendar hooks
+  if (id === 'appointments' && role === 'patient' && window.CuraCalendar) {
+    requestAnimationFrame(() => window.CuraCalendar.init());
+  }
+  if (id === 'appointments' && role === 'doctor' && window.CuraCalendar) {
+    requestAnimationFrame(() => window.CuraCalendar.refreshDoctor());
+  }
   // Auto-close mobile sidebar on nav
   if (window.matchMedia('(max-width: 880px)').matches) toggleSidebar(false);
   window.scrollTo({ top: 0, behavior: 'smooth' });
