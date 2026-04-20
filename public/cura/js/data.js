@@ -22,6 +22,7 @@ const NAV_CONFIG = {
   doctor: [
     { section: 'Main' },
     { id: 'dashboard',   icon: '🏠', label: 'Dashboard' },
+    { id: 'analytics',   icon: '📈', label: 'Analytics' },
     { id: 'patients',    icon: '🏥', label: 'Patient Records' },
     { id: 'appointments',icon: '📅', label: 'Appointments' },
     { section: 'Clinical' },
@@ -34,6 +35,7 @@ const NAV_CONFIG = {
   nurse: [
     { section: 'Main' },
     { id: 'dashboard',   icon: '🏠', label: 'Dashboard' },
+    { id: 'analytics',   icon: '📈', label: 'Analytics' },
     { id: 'patients',    icon: '🏥', label: 'My Patients' },
     { section: 'Actions' },
     { id: 'vitals',      icon: '📊', label: 'Enter Vitals' },
@@ -44,6 +46,7 @@ const NAV_CONFIG = {
   patient: [
     { section: 'Main' },
     { id: 'dashboard',     icon: '🏠', label: 'Dashboard' },
+    { id: 'analytics',     icon: '📈', label: 'My Analytics' },
     { id: 'prescriptions', icon: '💊', label: 'My Prescriptions' },
     { id: 'appointments',  icon: '📅', label: 'My Appointments' },
     { section: 'Services' },
@@ -66,6 +69,7 @@ const PANEL_LABELS = {
   details: 'My Details',
   appointments: 'Appointments',
   tasks: 'My Tasks',
+  analytics: 'Analytics',
   settings: 'Settings',
   about: 'About Cura',
 };

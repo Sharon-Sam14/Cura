@@ -545,11 +545,67 @@
       </div></div>
     </div>
 
+
+    <!-- ══ PATIENT: ANALYTICS ══ -->
+    <div class="panel" id="panel-patient-analytics">
+      <div class="row g-3 mb-4">
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent)"><div class="sc-label">Current Risk Zone</div><div class="sc-value" style="font-size:20px">Routine</div><div class="sc-change up">↓ Improved from Urgent</div></div></div>
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent3)"><div class="sc-label">Avg Heart Rate</div><div class="sc-value">82 <span style="font-size:12px;color:var(--text3)">bpm</span></div><div class="sc-change up">Stable last 10 visits</div></div></div>
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent2)"><div class="sc-label">Days in Routine</div><div class="sc-value">94</div><div class="sc-change up">↑ 3 month streak</div></div></div>
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent4)"><div class="sc-label">Adherence</div><div class="sc-value">86%</div><div class="sc-change up">Refills on schedule</div></div></div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-lg-8"><div class="card cura-card"><div class="card-header"><span class="card-title">Vitals Trend — Last 10 Visits</span></div><div class="card-body"><canvas id="patVitalsChart" height="120"></canvas></div></div></div>
+        <div class="col-lg-4"><div class="card cura-card"><div class="card-header"><span class="card-title">Risk Score History</span></div><div class="card-body"><canvas id="patRiskChart" height="180"></canvas></div></div></div>
+      </div>
+      <div class="row g-3">
+        <div class="col-lg-7"><div class="card cura-card"><div class="card-header"><span class="card-title">Symptom Heatmap (last 30 days)</span></div><div class="card-body" id="patHeatmap"></div></div></div>
+        <div class="col-lg-5"><div class="card cura-card"><div class="card-header"><span class="card-title">Prescription Adherence</span></div><div class="card-body" id="patAdherence"></div></div></div>
+      </div>
+    </div>
+
+    <!-- ══ NURSE: ANALYTICS ══ -->
+    <div class="panel" id="panel-nurse-analytics">
+      <div class="row g-3 mb-4">
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent5)"><div class="sc-label">Avg Response Time</div><div class="sc-value">3.2 <span style="font-size:12px;color:var(--text3)">min</span></div><div class="sc-change up">↓ 18% vs last week</div></div></div>
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent3)"><div class="sc-label">Tasks Completed</div><div class="sc-value">17 / 22</div><div class="sc-change up">77% — on track</div></div></div>
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent2)"><div class="sc-label">Active Patients</div><div class="sc-value">8</div><div class="sc-change warn">2 emergency</div></div></div>
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent4)"><div class="sc-label">Symptom Spike</div><div class="sc-value" style="font-size:18px">Fever ↑</div><div class="sc-change warn">4 patients today</div></div></div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-lg-5"><div class="card cura-card"><div class="card-header"><span class="card-title">Ward Triage Breakdown</span></div><div class="card-body"><canvas id="nurseTriageChart" height="200"></canvas></div></div></div>
+        <div class="col-lg-7"><div class="card cura-card"><div class="card-header"><span class="card-title">Response Time — Last 7 Shifts</span></div><div class="card-body"><canvas id="nurseRespChart" height="200"></canvas></div></div></div>
+      </div>
+      <div class="row g-3">
+        <div class="col-lg-5"><div class="card cura-card"><div class="card-header"><span class="card-title">Task Completion (Today)</span></div><div class="card-body d-flex align-items-center justify-content-center" style="min-height:240px"><canvas id="nurseTaskRing" width="200" height="200"></canvas></div></div></div>
+        <div class="col-lg-7"><div class="card cura-card"><div class="card-header"><span class="card-title">Ward Symptom Spikes (last 7 days)</span></div><div class="card-body"><canvas id="nurseSymptomChart" height="180"></canvas></div></div></div>
+      </div>
+    </div>
+
+    <!-- ══ DOCTOR: ANALYTICS ══ -->
+    <div class="panel" id="panel-doctor-analytics">
+      <div class="row g-3 mb-4">
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent)"><div class="sc-label">Patients Today</div><div class="sc-value">38</div><div class="sc-change up">↑ across 3 wards</div></div></div>
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent3)"><div class="sc-label">Avg Consult (Urgent)</div><div class="sc-value">12.4 <span style="font-size:12px;color:var(--text3)">min</span></div><div class="sc-change up">↓ 1.6 min vs avg</div></div></div>
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent2)"><div class="sc-label">ML Agreement</div><div class="sc-value">87%</div><div class="sc-change up">13% overrides</div></div></div>
+        <div class="col-md-3"><div class="stat-card" style="--stripe:var(--accent4)"><div class="sc-label">Top Risk Today</div><div class="sc-value" style="font-size:18px">High BP</div><div class="sc-change warn">40% of urgent cases</div></div></div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-lg-7"><div class="card cura-card"><div class="card-header"><span class="card-title">Triage Distribution by Nurse</span></div><div class="card-body"><canvas id="docTriageChart" height="200"></canvas></div></div></div>
+        <div class="col-lg-5"><div class="card cura-card"><div class="card-header"><span class="card-title">ML Predictions vs Doctor Overrides</span></div><div class="card-body"><canvas id="docOverrideChart" height="200"></canvas></div></div></div>
+      </div>
+      <div class="row g-3">
+        <div class="col-lg-7"><div class="card cura-card"><div class="card-header"><span class="card-title">Avg Consultation Time by Triage</span></div><div class="card-body"><canvas id="docConsultChart" height="180"></canvas></div></div></div>
+        <div class="col-lg-5"><div class="card cura-card"><div class="card-header"><span class="card-title">Top Clinical Risk Factors (Today)</span></div><div class="card-body" id="docRiskFactors"></div></div></div>
+      </div>
+    </div>
+
     <!-- ══ ABOUT (shared) ══ -->
     <div class="panel" id="panel-admin-about"></div>
     <div class="panel" id="panel-doctor-about"></div>
     <div class="panel" id="panel-nurse-about"></div>
     <div class="panel" id="panel-patient-about"></div>
+
 
   </div>
 </div>
@@ -604,8 +660,10 @@
 <div class="toast-cura" id="toast"><span class="toast-icon" id="toastIcon">✅</span><span id="toastMsg">Done</span></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
+<script src="js/analytics.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const tpl = document.getElementById('aboutTpl');
