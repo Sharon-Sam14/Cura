@@ -571,3 +571,44 @@ body.app { display: flex; flex-direction: row; min-height: 100vh; }
   .card.cura-card { border: 1px solid #999 !important; box-shadow: none !important; background: #fff !important; }
   * { color: #000 !important; }
 }
+
+/* ── ANALYTICS TOOLBAR ── */
+.cura-analytics-toolbar .cura-range-btn { font-weight: 600; min-width: 48px; }
+.cura-analytics-toolbar .cura-range-btn.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff !important;
+  border-color: transparent;
+}
+
+/* ── BOOKING CALENDAR ── */
+.cura-calendar { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+.cura-cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.cura-cal-head .cal-month-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; }
+.cura-cal-head button { background: var(--surface3); border: 1px solid var(--border); color: var(--text); width: 32px; height: 32px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all .15s; }
+.cura-cal-head button:hover { border-color: var(--border-glow); background: var(--surface4); }
+.cura-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-dow { text-align: center; font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; padding: 4px 0; font-weight: 700; }
+.cal-day {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-family: 'JetBrains Mono', monospace;
+  background: var(--surface3); border-radius: 8px; cursor: pointer;
+  transition: all .15s; position: relative; color: var(--text);
+}
+.cal-day:hover { background: var(--surface4); border: 1px solid var(--border-glow); }
+.cal-day.past { color: var(--text3); cursor: not-allowed; opacity: .4; }
+.cal-day.past:hover { background: var(--surface3); border: none; }
+.cal-day.today { box-shadow: inset 0 0 0 1.5px var(--accent2); }
+.cal-day.selected { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; font-weight: 700; }
+.cal-day.booked .cal-dot { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); width: 5px; height: 5px; border-radius: 50%; background: var(--accent3); }
+
+/* ── SYMPTOM CHECKER ── */
+.sc-option {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 10px;
+  background: var(--surface3); border: 1.5px solid var(--border);
+  cursor: pointer; transition: all .15s; font-size: 14px; color: var(--text);
+}
+.sc-option:hover { border-color: var(--border-glow); background: var(--surface4); }
+.sc-option.selected { border-color: var(--accent); background: rgba(59,130,246,.10); }
+.sc-option .sc-bullet { font-size: 18px; color: var(--accent2); width: 20px; text-align: center; }
+.sc-option.selected .sc-bullet { color: var(--accent); }
